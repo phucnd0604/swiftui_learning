@@ -56,6 +56,18 @@ class MainListViewModel: ObservableObject {
     @Published var sheetPosition: BottomSheetPosition = .normal
     @Published var bottomSheetType: BottomSheetType = .predictMenu
     
+    /// Mock image items for horizontal scroll header
+    var imageItems: [UIImage] {
+        // Return a few colored images as mock data
+        let colors: [UIColor] = [.systemRed, .systemBlue, .systemGreen, .systemOrange, .systemPurple]
+        return colors.map { color in
+            UIGraphicsImageRenderer(size: CGSize(width: 120, height: 120)).image { ctx in
+                color.setFill()
+                ctx.fill(CGRect(origin: .zero, size: CGSize(width: 120, height: 120)))
+            }
+        }
+    }
+    
     var mealType: MealType = .launch
     
     var timeLineTime: String {

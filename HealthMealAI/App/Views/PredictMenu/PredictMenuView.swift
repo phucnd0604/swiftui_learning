@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct PredictMenuView: View {
-    @ObservedObject var mainListViewModel: MainListViewModel
-    @ObservedObject var viewModel: PredictMenuViewModel
+    @EnvironmentObject var mainListViewModel: MainListViewModel
+    @EnvironmentObject var viewModel: PredictMenuViewModel
 
     var buttonStyle: PredictMenuViewModel.ButtonSizeStyle {
         if mainListViewModel.menuItems.count > 0 || mainListViewModel.sheetPosition == .minimal {
@@ -153,6 +153,6 @@ struct PredictMenuView: View {
 
 struct PredictMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        PredictMenuView(mainListViewModel: MainListViewModel(), viewModel: PredictMenuViewModel())
+        PredictMenuView()
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 class HistoryViewModel: ObservableObject {
     @Published var historyItems: [MenuItem] = []
     @Published var historyType: MealType = .breakfast // Default history type
-    @Published var hasMoreData: Bool = true
+    @Published var hasMoreData: Bool = false
     @Published var isLoadingMore: Bool = false
     
     init() {
@@ -19,10 +19,14 @@ class HistoryViewModel: ObservableObject {
     }
     
     func loadHistory() {
-        // Simulate loading history items
-        let sampleItem = sampleMenuItems.shuffled().prefix(10)
-        historyItems = Array(sampleItem)
-        hasMoreData = true
+        ProgressManager.shared.show()
+        // Simulate a network delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let sampleItem = sampleMenuItems.shuffled().prefix(10)
+            self.historyItems = Array(sampleItem)
+            self.hasMoreData = true
+            ProgressManager.shared.hide()
+        }
     }
     
     @MainActor
@@ -78,7 +82,7 @@ struct HistoryRowView: View {
 struct HistoryView: View {
     // ViewModel for managing history data
     @StateObject private var viewModel = HistoryViewModel()
-    @ObservedObject var mainListViewModel: MainListViewModel
+    @EnvironmentObject var mainListViewModel: MainListViewModel
     
     var body: some View {
         VStack {
@@ -147,6 +151,6 @@ struct HistoryView: View {
 // preview data for testing
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView(mainListViewModel: MainListViewModel())
+        MainListView()
     }
 }

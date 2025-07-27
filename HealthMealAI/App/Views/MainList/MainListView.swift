@@ -12,7 +12,7 @@ import SwiftUI
 
 struct MealHeaderView: View {
     @ObservedObject var viewModel: MainListViewModel
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HeaderActionView(viewModel: viewModel)
@@ -27,7 +27,7 @@ struct MealHeaderView: View {
 // -- MARK: Header Action View
 struct HeaderActionView: View {
     @ObservedObject var viewModel: MainListViewModel
-
+    
     var body: some View {
         HStack {
             Text(viewModel.mealType.name)
@@ -49,9 +49,9 @@ struct HeaderActionView: View {
                         viewModel.updateTime(date: newValue)
                     }
                 }
-
+            
             Spacer()
-
+            
             HStack {
                 Button(action: {
                     // Cancel action
@@ -60,7 +60,7 @@ struct HeaderActionView: View {
                         .font(.system(size: 13))
                         .foregroundColor(.gray)
                 }
-
+                
                 Button(action: {
                     // Done action
                 }) {
@@ -91,9 +91,9 @@ struct HeaderDetailsView: View {
                 .font(.system(size: 13, weight: .bold)) +
             Text(" menu")
                 .font(.system(size: 11))
-
+            
             Spacer()
-
+            
             Group {
                 Text(viewModel.totalKcal.formatted)
                     .font(.system(size: 13, weight: .bold))
@@ -125,7 +125,7 @@ struct HeaderDetailsView: View {
 struct EmptyMealStateView: View {
     
     var onRegisterNothing: () -> Void
-
+    
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             Image(systemName: "leaf.circle")
@@ -134,11 +134,11 @@ struct EmptyMealStateView: View {
                 .frame(width: 120, height: 120)
                 .foregroundColor(.green.opacity(0.6))
                 .padding(.top, 50)
-
+            
             Text("Bạn chưa chọn món ăn nào")
                 .font(.headline)
                 .foregroundColor(.gray)
-
+            
             Button(action: onRegisterNothing) {
                 Text("Đăng ký không ăn gì")
                     .fontWeight(.semibold)
@@ -161,6 +161,43 @@ struct MainListView: View {
     @StateObject private var viewModel = MainListViewModel()
     @StateObject private var predictVM = PredictMenuViewModel()
     
+    init() {
+        UITableView.appearance().sectionFooterHeight = 0
+    }
+    
+    private func sectionHeaderView(_ viewModel: MainListViewModel) -> some View {
+        TabView {
+            ForEach(viewModel.imageItems, id: \.self) { image in
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 180)
+                    .clipped()
+            }
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .frame(height: 180)
+        .padding(.horizontal, -20)
+        .padding(.vertical, 10)
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+        
+    }
+    
+    private func sectionFooterView() -> some View {
+        HStack {
+            Spacer()
+            Button(action: {
+                // handle create myset
+            }) {
+                Text("Tạo thực đơn của tôi")
+                    .font(.system(size: 18))
+                    .foregroundColor(.blue)
+                    .padding(.vertical, 10)
+            }
+            Spacer()
+        }
+    }
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack(alignment: .leading) {
@@ -172,13 +209,15 @@ struct MainListView: View {
                 } else {
                     ScrollViewReader { scrollProxy in
                         List {
-                            ForEach(viewModel.menuItems) { item in
-                                MenuRowView(item: item, viewModel: viewModel)
-                                    .id(item.id)
-                                    .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-                                    .padding(.vertical, 8)
+                            Section(header: sectionHeaderView(viewModel), footer: sectionFooterView()) {
+                                ForEach(viewModel.menuItems) { item in
+                                    MenuRowView(item: item, viewModel: viewModel)
+                                        .id(item.id)
+                                        .padding(.vertical, 8)
+                                }
+                                .onDelete(perform: viewModel.deleteItem)
                             }
-                            .onDelete(perform: viewModel.deleteItem)
+                            
                         }
                         .listStyle(.insetGrouped)
                         .safeAreaInset(edge: .bottom, content: {
@@ -202,17 +241,16 @@ struct MainListView: View {
                 predictVM.uuids = viewModel.menuItems.map { $0.id }
             }
             .background(Color(UIColor.systemGroupedBackground))
-
             BottomSheetView(position: $viewModel.sheetPosition) {
                 switch viewModel.bottomSheetType {
                     case .predictMenu:
-                        PredictMenuView(mainListViewModel: viewModel, viewModel: predictVM)
+                        PredictMenuView()
                             .frame(maxWidth: .infinity, alignment: .top)
                     case .history:
-                        HistoryView(mainListViewModel: viewModel)
+                        HistoryView()
                             .frame(maxWidth: .infinity, alignment: .top)
                     case .search:
-                        Text("Search View")                            
+                        Text("Search View")
                     case .mySetMenu:
                         Text("My Set Menu View")
                     case .takePhoto:
@@ -222,9 +260,13 @@ struct MainListView: View {
                 }
             }
         }
+        .environmentObject(viewModel)
+        .environmentObject(predictVM)
     }
 }
 
 #Preview {
     MainListView()
+        .environmentObject(MainListViewModel())
+        .environmentObject(PredictMenuViewModel())
 }
