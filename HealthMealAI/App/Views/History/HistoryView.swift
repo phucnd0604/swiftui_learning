@@ -21,7 +21,7 @@ class HistoryViewModel: ObservableObject {
     func loadHistory() {
         ProgressManager.shared.show()
         // Simulate a network delay
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             let sampleItem = sampleMenuItems.shuffled().prefix(10)
             self.historyItems = Array(sampleItem)
             self.hasMoreData = true

@@ -30,7 +30,7 @@ struct HealthMealAIApp: App {
                             }
                         }
                         .padding()
-                        .background(Color.gray.opacity(0.3))
+                        //.background(Color.gray.opacity(0.3))
                         .cornerRadius(12)
                     }
                     .transition(.opacity)
