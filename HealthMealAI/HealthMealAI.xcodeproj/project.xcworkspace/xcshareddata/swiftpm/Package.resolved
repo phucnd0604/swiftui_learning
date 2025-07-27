@@ -1,0 +1,15 @@
+{
+  "originHash" : "1263dae7b6d2b30c3c5aa46784ff6c518f50a4a453f2715c56f2e908893d170f",
+  "pins" : [
+    {
+      "identity" : "popovers",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/aheze/Popovers",
+      "state" : {
+        "revision" : "de44c4dd7271ec6413fe350f7efadb14e5e18dce",
+        "version" : "1.3.2"
+      }
+    }
+  ],
+  "version" : 3
+}
