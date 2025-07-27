@@ -31,12 +31,29 @@ enum BottomSheetType: CaseIterable {
                 return "Nhập ảnh"
         }
     }
+    
+    var icon: String {
+        switch self {
+            case .predictMenu:
+                return "brain"
+            case .history:
+                return "clock"
+            case .search:
+                return "magnifyingglass"
+            case .mySetMenu:
+                return "list.bullet.rectangle"
+            case .takePhoto:
+                return "camera"
+            case .inputPhoto:
+                return "photo.on.rectangle.angled"
+        }
+    }
 }
 
 class MainListViewModel: ObservableObject {
     
     @Published var timeLineDate: Date = Date()
-    @Published var sheetPosition: BottomSheetPosition = .minimal
+    @Published var sheetPosition: BottomSheetPosition = .normal
     @Published var bottomSheetType: BottomSheetType = .predictMenu
     
     var mealType: MealType = .launch

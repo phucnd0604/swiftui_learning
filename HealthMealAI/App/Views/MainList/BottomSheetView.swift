@@ -55,7 +55,7 @@ struct BottomSheetView<Content: View>: View {
                 Capsule()
                     .fill(Color.gray.opacity(0.5))
                     .frame(width: 60, height: 6)
-                    .padding(.vertical, 16)
+                    .padding(.vertical, 8)
 
                 content
                     .frame(height: max(0, screenHeight - (yOffset + dragOffset) - 30))
@@ -63,8 +63,8 @@ struct BottomSheetView<Content: View>: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.white)
-            .cornerRadius(16)
-            .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: -2)
+            .cornerRadius(20)
+            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: -2)
             .frame(maxWidth: .infinity, alignment: .top)
             .offset(y: min(
                 BottomSheetPosition.offset(for: .minimal, screenHeight: screenHeight),

@@ -90,7 +90,7 @@ struct HistoryView: View {
                 Text("Meal History")
                 Spacer()
                 Button(action: {
-                    // Action to close the history view
+                    mainListViewModel.bottomSheetType = .predictMenu
                 }) {
                     Text("Close")
                         .font(.system(size: 16))
@@ -115,6 +115,11 @@ struct HistoryView: View {
                 ForEach(viewModel.historyItems) { item in
                     HistoryRowView(item: item, viewModel: mainListViewModel)
                         .padding(.vertical, 4)
+                        .onTapGesture {
+                            // Handle item tap, maybe show details or add to current meal
+                            mainListViewModel.addItem(item)
+                            mainListViewModel.bottomSheetType = .predictMenu
+                        }
                 }
                 
                 // Load more indicator

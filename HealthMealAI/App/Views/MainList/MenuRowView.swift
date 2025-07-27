@@ -62,20 +62,44 @@ struct MenuRowView: View {
                 
             }
             .buttonStyle(.plain)
-            .popover(
-                present: $showingQuantityPicker,
-                attributes: {
-                    $0.sourceFrameInset.top = -8
-                    $0.position = .absolute(
-                        originAnchor: .top,
-                        popoverAnchor: .bottom
-                    )
-                }
-            ) {
-                Templates.Container(
-                    arrowSide: .bottom(.mostClockwise),
-                    backgroundColor: .green
-                ) {
+            //            .popover(
+            //                present: $showingQuantityPicker,
+            //                attributes: {
+            //                    $0.sourceFrameInset.top = -8
+            //                    $0.position = .absolute(
+            //                        originAnchor: .top,
+            //                        popoverAnchor: .bottom
+            //                    )
+            //                }
+            //            ) {
+            //                Templates.Container(
+            //                    arrowSide: .bottom(.mostClockwise),
+            //                    backgroundColor: .green
+            //                ) {
+            //                    QuantityPickerView(
+            //                        text: $tempQuantityText,
+            //                        onDone: {
+            //                            showingQuantityPicker = false
+            //                            let quantity = Float(tempQuantityText) ?? 0
+            //                            if quantity <= 0 {
+            //                                viewModel.deleteItem(item)
+            //                            } else {
+            //                                item.quantity = quantity
+            //                                oldQuantity = quantity
+            //                            }
+            //                        },
+            //                        onChange: { newValue in
+            //                            tempQuantityText = newValue
+            //                            item.quantity = Float(newValue) ?? 0
+            //
+            //                        }
+            //                    )
+            //
+            //                }
+            //                .frame(maxWidth: 300)
+            //            }
+            .popover(isPresented: $showingQuantityPicker, attachmentAnchor: .point(.leading)) {
+                if #available(iOS 16.4, *) {
                     QuantityPickerView(
                         text: $tempQuantityText,
                         onDone: {
@@ -93,43 +117,19 @@ struct MenuRowView: View {
                             item.quantity = Float(newValue) ?? 0
                             
                         }
-                    )
-                    
+                    ).presentationCompactAdaptation(.popover)
+                        .onDisappear {
+                            // If the user didn't change the quantity, revert to old value
+                            item.quantity = oldQuantity
+                        }
+                } else {
+                    // Fallback on earlier versions
                 }
-                .frame(maxWidth: 300)
             }
-            /*.popover(isPresented: $showingQuantityPicker, attachmentAnchor: .point(.leading)) {
-             if #available(iOS 16.4, *) {
-             QuantityPickerView(
-             text: $tempQuantityText,
-             onDone: {
-             showingQuantityPicker = false
-             let quantity = Float(tempQuantityText) ?? 0
-             if quantity <= 0 {
-             viewModel.deleteItem(item)
-             } else {
-             item.quantity = quantity
-             oldQuantity = quantity
-             }
-             },
-             onChange: { newValue in
-             tempQuantityText = newValue
-             item.quantity = Float(newValue) ?? 0
-             
-             }
-             ).presentationCompactAdaptation(.popover)
-             .onDisappear {
-             // If the user didn't change the quantity, revert to old value
-             item.quantity = oldQuantity
-             }
-             } else {
-             // Fallback on earlier versions
-             }
-             }
-             }*/
         }
     }
 }
+
 
 fileprivate let maxSize = 250.0
 

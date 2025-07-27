@@ -7,9 +7,6 @@
 
 
 import SwiftUI
-import SwiftUIFlow
-
-
 
 struct PredictMenuView: View {
     @ObservedObject var mainListViewModel: MainListViewModel
@@ -23,11 +20,12 @@ struct PredictMenuView: View {
     }
     
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
+        VStack(alignment: .center, spacing: 10) {
             if buttonStyle == .big {
                 Text("Nhập món ăn")
                     .font(.title2)
                     .fontWeight(.semibold)
+                    .padding(.top, 8)
             }
             
             if buttonStyle == .big {
@@ -69,7 +67,6 @@ struct PredictMenuView: View {
                     VStack {
                         FlowLayout(mode: .scrollable, items: viewModel.suggestedMenus) { item in
                             Button(action: {
-                                // TODO: handle tap on \(item.name)
                                 mainListViewModel.addItem(item)
                             }) {
                                 HStack {
@@ -110,6 +107,16 @@ struct PredictMenuView: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .top)
+        .alert("Error", isPresented: $viewModel.showError, actions: {
+            Button("OK", role: .cancel) { }
+        }, message: {
+            if let errorMessage = viewModel.errorMessage {
+                Text(errorMessage)
+            }
+        })
+        .onChange(of: viewModel.errorMessage) { newValue in
+            viewModel.showError = newValue != nil
+        }
     }
     
     @ViewBuilder
@@ -117,7 +124,9 @@ struct PredictMenuView: View {
         Button(action: {
             switch type {
                 case .history:
-                    mainListViewModel.sheetPosition = .normal
+                    if mainListViewModel.sheetPosition == .minimal {
+                        mainListViewModel.sheetPosition = .normal
+                    }
                     mainListViewModel.bottomSheetType = type
                 default:
                     return
@@ -126,14 +135,14 @@ struct PredictMenuView: View {
         }) {
             if buttonStyle == .big {
                 VStack(spacing: 4) {
-                    Image(systemName: iconName(for: type.name))
+                    Image(systemName: type.icon)
                         .font(.system(size: 24))
                     Text(type.name)
                         .font(.footnote)
                 }
                 .frame(width: (UIScreen.main.bounds.width - 20)/3, height: 80)
             } else {
-                Image(systemName: iconName(for: type.name))
+                Image(systemName: type.icon)
                     .font(.system(size: 20))
                     .padding(.vertical, 8)
                     .frame(width: UIScreen.main.bounds.width/5, height: 40)
@@ -145,16 +154,5 @@ struct PredictMenuView: View {
 struct PredictMenuView_Previews: PreviewProvider {
     static var previews: some View {
         PredictMenuView(mainListViewModel: MainListViewModel(), viewModel: PredictMenuViewModel())
-    }
-}
-
-func iconName(for title: String) -> String {
-    switch title {
-    case "Tìm kiếm": return "magnifyingglass"
-    case "Lịch sử": return "clock"
-    case "Bộ của tôi": return "star"
-    case "Camera": return "camera"
-    case "Thư viện": return "photo.on.rectangle"
-    default: return "questionmark"
     }
 }

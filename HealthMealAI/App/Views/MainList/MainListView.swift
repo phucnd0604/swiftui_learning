@@ -176,6 +176,7 @@ struct MainListView: View {
                                 MenuRowView(item: item, viewModel: viewModel)
                                     .id(item.id)
                                     .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
+                                    .padding(.vertical, 8)
                             }
                             .onDelete(perform: viewModel.deleteItem)
                         }
@@ -198,11 +199,7 @@ struct MainListView: View {
             }
             .onChange(of: viewModel.menuItems.count) { _ in
                 // then reload predict menu
-                Task {
-                    // sleep 0.2 seconds to ensure the list is updated
-                    try? await Task.sleep(nanoseconds: 200_000_000)
-                    predictVM.reloadSuggestedMenus(ids: viewModel.menuItems.map { $0.id })
-                }
+                predictVM.uuids = viewModel.menuItems.map { $0.id }
             }
             .background(Color(UIColor.systemGroupedBackground))
 

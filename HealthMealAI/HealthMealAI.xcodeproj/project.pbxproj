@@ -21,7 +21,6 @@
 		5E95F6B92E34C05200439953 /* AlwaysPopoverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E95F6B32E34C05200439953 /* AlwaysPopoverModifier.swift */; };
 		5E95F6BA2E34C05200439953 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E95F6B42E34C05200439953 /* ContentViewController.swift */; };
 		5EE52A342E35AE6500C013AC /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = 5EE52A332E35AE6500C013AC /* Popovers */; };
-		5EE52A3A2E361D4700C013AC /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 5EE52A392E361D4700C013AC /* WaterfallGrid */; };
 		5EE783E32E3463F8005621FF /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE783E22E3463F5005621FF /* Float.swift */; };
 		5EE783E82E349B2B005621FF /* PredictMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE783E72E349B1F005621FF /* PredictMenuView.swift */; };
 		5EE783F52E34AA1E005621FF /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE783F42E34AA1C005621FF /* FlowLayout.swift */; };
@@ -61,7 +60,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EE52A342E35AE6500C013AC /* Popovers in Frameworks */,
-				5EE52A3A2E361D4700C013AC /* WaterfallGrid in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +199,6 @@
 			name = HealthMealAI;
 			packageProductDependencies = (
 				5EE52A332E35AE6500C013AC /* Popovers */,
-				5EE52A392E361D4700C013AC /* WaterfallGrid */,
 			);
 			productName = HealthMealAI;
 			productReference = 5ED44E5C2E1D54570068BA8E /* HealthMealAI.app */;
@@ -495,10 +492,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5EE52A322E35AE6500C013AC /* XCRemoteSwiftPackageReference "Popovers" */;
 			productName = Popovers;
-		};
-		5EE52A392E361D4700C013AC /* WaterfallGrid */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WaterfallGrid;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
