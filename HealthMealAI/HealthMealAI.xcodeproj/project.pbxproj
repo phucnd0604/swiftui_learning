@@ -20,11 +20,13 @@
 		5E95F6B82E34C05200439953 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E95F6B52E34C05200439953 /* UIView+Extension.swift */; };
 		5E95F6B92E34C05200439953 /* AlwaysPopoverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E95F6B32E34C05200439953 /* AlwaysPopoverModifier.swift */; };
 		5E95F6BA2E34C05200439953 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E95F6B42E34C05200439953 /* ContentViewController.swift */; };
+		5EACFEB52E3D0C50003302FD /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EACFEB42E3D0C50003302FD /* SearchBarView.swift */; };
 		5EE52A342E35AE6500C013AC /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = 5EE52A332E35AE6500C013AC /* Popovers */; };
 		5EE783E32E3463F8005621FF /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE783E22E3463F5005621FF /* Float.swift */; };
 		5EE783E82E349B2B005621FF /* PredictMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE783E72E349B1F005621FF /* PredictMenuView.swift */; };
 		5EE783F52E34AA1E005621FF /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE783F42E34AA1C005621FF /* FlowLayout.swift */; };
 		5EF68E252E3901C00009C915 /* SearchKeywordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF68E242E3901BB0009C915 /* SearchKeywordView.swift */; };
+		5EF68E272E3915AC0009C915 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF68E262E3915A40009C915 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,11 +43,13 @@
 		5E95F6B42E34C05200439953 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		5E95F6B52E34C05200439953 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		5E95F6B62E34C05200439953 /* View+Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Modifiers.swift"; sourceTree = "<group>"; };
+		5EACFEB42E3D0C50003302FD /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		5ED44E5C2E1D54570068BA8E /* HealthMealAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthMealAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EE783E22E3463F5005621FF /* Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
 		5EE783E72E349B1F005621FF /* PredictMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictMenuView.swift; sourceTree = "<group>"; };
 		5EE783F42E34AA1C005621FF /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		5EF68E242E3901BB0009C915 /* SearchKeywordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordView.swift; sourceTree = "<group>"; };
+		5EF68E262E3915A40009C915 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -165,6 +169,7 @@
 		5EE783E12E3463E7005621FF /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				5EF68E262E3915A40009C915 /* CustomTextField.swift */,
 				5E07A4652E35175700B0EE46 /* Color.swift */,
 				5EE783E22E3463F5005621FF /* Float.swift */,
 			);
@@ -185,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				5EF68E242E3901BB0009C915 /* SearchKeywordView.swift */,
+				5EACFEB42E3D0C50003302FD /* SearchBarView.swift */,
 			);
 			path = SearchKeyword;
 			sourceTree = "<group>";
@@ -271,9 +277,11 @@
 				5E6C79E22E33AC0600DCB086 /* MainListView.swift in Sources */,
 				5E6C79E42E33BD0B00DCB086 /* Menu.swift in Sources */,
 				5EE783E32E3463F8005621FF /* Float.swift in Sources */,
+				5EF68E272E3915AC0009C915 /* CustomTextField.swift in Sources */,
 				5E07A4642E35037200B0EE46 /* PredictMenuViewModel.swift in Sources */,
 				5E07A4662E35175900B0EE46 /* Color.swift in Sources */,
 				5EF68E252E3901C00009C915 /* SearchKeywordView.swift in Sources */,
+				5EACFEB52E3D0C50003302FD /* SearchBarView.swift in Sources */,
 				5E6C79EB2E33C5B100DCB086 /* MainListViewModel.swift in Sources */,
 				5E95F6B72E34C05200439953 /* View+Modifiers.swift in Sources */,
 				5E95F6B82E34C05200439953 /* UIView+Extension.swift in Sources */,
