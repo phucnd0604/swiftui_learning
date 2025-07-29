@@ -200,8 +200,9 @@ struct MainListView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 0) {
                 MealHeaderView(viewModel: viewModel)
+                    .zIndex(100)
                 if viewModel.menuItems.isEmpty {
                     EmptyMealStateView {
                         // handle eat nothing
@@ -217,14 +218,15 @@ struct MainListView: View {
                                 }
                                 .onDelete(perform: viewModel.deleteItem)
                             }
-                            
                         }
                         .listStyle(.insetGrouped)
-                        .safeAreaInset(edge: .bottom, content: {
+                        .padding(.top, -10)
+                        .zIndex(1)
+                        .safeAreaInset(edge: .bottom) {
                             Spacer()
                                 .frame(height: BottomSheetPosition.offsetBottom(for: viewModel.sheetPosition, screenHeight: UIScreen.main.bounds.height))
-                        })
-                        .offset(y: -10)
+                                .animation(.easeInOut(duration: 0.3), value: viewModel.sheetPosition)
+                        }
                         .onChange(of: viewModel.menuItems.count) { _ in
                             // when the menu items change, scroll to the last ite
                             if let last = viewModel.menuItems.last {
@@ -250,7 +252,7 @@ struct MainListView: View {
                         HistoryView()
                             .frame(maxWidth: .infinity, alignment: .top)
                     case .search:
-                        Text("Search View")
+                        SearchKeywordView()                            
                     case .mySetMenu:
                         Text("My Set Menu View")
                     case .takePhoto:

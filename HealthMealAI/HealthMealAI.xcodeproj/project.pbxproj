@@ -24,6 +24,7 @@
 		5EE783E32E3463F8005621FF /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE783E22E3463F5005621FF /* Float.swift */; };
 		5EE783E82E349B2B005621FF /* PredictMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE783E72E349B1F005621FF /* PredictMenuView.swift */; };
 		5EE783F52E34AA1E005621FF /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE783F42E34AA1C005621FF /* FlowLayout.swift */; };
+		5EF68E252E3901C00009C915 /* SearchKeywordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF68E242E3901BB0009C915 /* SearchKeywordView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		5EE783E22E3463F5005621FF /* Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
 		5EE783E72E349B1F005621FF /* PredictMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictMenuView.swift; sourceTree = "<group>"; };
 		5EE783F42E34AA1C005621FF /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+		5EF68E242E3901BB0009C915 /* SearchKeywordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -134,6 +136,7 @@
 		5ED44E6C2E1D565F0068BA8E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5EF68E232E3901B10009C915 /* SearchKeyword */,
 				5E07A4682E351BBE00B0EE46 /* History */,
 				5EE783EF2E34A71E005621FF /* Common */,
 				5E6C79E52E33BE7E00DCB086 /* MainList */,
@@ -176,6 +179,14 @@
 				5EE783F42E34AA1C005621FF /* FlowLayout.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		5EF68E232E3901B10009C915 /* SearchKeyword */ = {
+			isa = PBXGroup;
+			children = (
+				5EF68E242E3901BB0009C915 /* SearchKeywordView.swift */,
+			);
+			path = SearchKeyword;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +273,7 @@
 				5EE783E32E3463F8005621FF /* Float.swift in Sources */,
 				5E07A4642E35037200B0EE46 /* PredictMenuViewModel.swift in Sources */,
 				5E07A4662E35175900B0EE46 /* Color.swift in Sources */,
+				5EF68E252E3901C00009C915 /* SearchKeywordView.swift in Sources */,
 				5E6C79EB2E33C5B100DCB086 /* MainListViewModel.swift in Sources */,
 				5E95F6B72E34C05200439953 /* View+Modifiers.swift in Sources */,
 				5E95F6B82E34C05200439953 /* UIView+Extension.swift in Sources */,

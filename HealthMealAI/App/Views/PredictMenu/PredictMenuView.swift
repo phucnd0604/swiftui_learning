@@ -122,11 +122,12 @@ struct PredictMenuView: View {
     @ViewBuilder
     func actionButton(for type: BottomSheetType) -> some View {
         Button(action: {
+            if mainListViewModel.sheetPosition == .minimal {
+                mainListViewModel.sheetPosition = .normal
+            }
+            mainListViewModel.bottomSheetType = type
             switch type {
                 case .history:
-                    if mainListViewModel.sheetPosition == .minimal {
-                        mainListViewModel.sheetPosition = .normal
-                    }
                     mainListViewModel.bottomSheetType = type
                 default:
                     return
